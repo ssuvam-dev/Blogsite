@@ -1,0 +1,17 @@
+{%extends 'index.html'%}
+{%block content%}
+<div id="content">
+<div class="article">
+    <h2><span><a href="{%url 'blog:postdetails' post.slug%}">{{post.headline}}</a></span></h2>
+    <p class="info noprint"> <span class="date">{{post.created}}</span><span class="noscreen">,</span> <span class="cat"><a href="{{post.category.get_absolute_url}}">{{post.category}}</a></span><span class="noscreen">,</span> <span class="user"><a href="#">{{post.username}}</a></span><span class="noscreen">,</span> <span class="comments"><a href="#">Comments</a></span> </p>
+    <p>{{post.content|safe}}</p>
+    <p>Total Views {{post.total_view}}</p>
+  </div>
+<h1>Comments</h1>
+<ul>
+{%for comment in post.comments.all%}
+    <li>{{comment.username}}<br>{{comment.created}}<br></h4>{{comment.comment}}</h4></li>
+{%endfor%}
+</ul>
+</div>
+  {%endblock%}
